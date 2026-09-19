@@ -51,6 +51,7 @@ body {
     overflow-x: hidden;
 }
 
+/* ===== SIDEBAR ===== */
 .sidebar {
     width: 260px;
     background: var(--bg-sidebar);
@@ -59,11 +60,14 @@ body {
     border-right: 1px solid var(--border);
     transition: transform 0.3s ease, background 0.3s;
     flex-shrink: 0;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .sidebar-header {
-    padding: 16px;
+    padding: 14px 16px;
     border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
 }
 
 .sidebar-logo {
@@ -96,7 +100,7 @@ body.light-theme .sidebar-logo span {
 }
 
 .new-chat-btn {
-    margin: 12px 16px;
+    margin: 10px 12px;
     padding: 10px 14px;
     background: transparent;
     border: 1px solid var(--border);
@@ -110,6 +114,7 @@ body.light-theme .sidebar-logo span {
     justify-content: center;
     gap: 8px;
     transition: all 0.2s;
+    flex-shrink: 0;
 }
 
 .new-chat-btn:hover {
@@ -118,7 +123,7 @@ body.light-theme .sidebar-logo span {
 }
 
 .export-btn {
-    margin: 0 16px 12px;
+    margin: 0 12px 10px;
     padding: 10px 14px;
     background: transparent;
     border: 1px solid var(--border);
@@ -132,6 +137,7 @@ body.light-theme .sidebar-logo span {
     justify-content: center;
     gap: 8px;
     transition: all 0.2s;
+    flex-shrink: 0;
 }
 
 .export-btn:hover {
@@ -143,19 +149,20 @@ body.light-theme .sidebar-logo span {
 .sidebar-chats {
     flex: 1;
     overflow-y: auto;
-    padding: 8px;
+    padding: 6px 8px;
+    min-height: 0;
 }
 
 .chat-item {
-    padding: 10px 12px;
+    padding: 9px 11px;
     border-radius: 8px;
     font-size: 13px;
     color: var(--text-secondary);
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 4px;
+    gap: 8px;
+    margin-bottom: 3px;
     transition: background 0.2s;
     position: relative;
 }
@@ -197,20 +204,23 @@ body.light-theme .sidebar-logo span {
     color: white;
 }
 
+/* ===== SIDEBAR FOOTER (Founder + User) ===== */
 .sidebar-footer {
-    padding: 12px;
+    padding: 10px;
     border-top: 1px solid var(--border);
+    flex-shrink: 0;
+    background: var(--bg-sidebar);
 }
 
 .founder-card {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px;
-    background: linear-gradient(135deg, rgba(255, 153, 51, 0.1), rgba(19, 136, 8, 0.1));
-    border: 1px solid var(--border);
+    gap: 10px;
+    padding: 10px;
+    background: linear-gradient(135deg, rgba(255, 153, 51, 0.12), rgba(19, 136, 8, 0.12));
+    border: 1px solid rgba(255, 153, 51, 0.25);
     border-radius: 12px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     cursor: pointer;
     transition: all 0.3s;
     position: relative;
@@ -231,12 +241,12 @@ body.light-theme .sidebar-logo span {
     background: linear-gradient(135deg, rgba(255, 153, 51, 0.2), rgba(19, 136, 8, 0.2));
     border-color: var(--accent);
     transform: translateX(3px);
-    box-shadow: 0 4px 15px rgba(255, 153, 51, 0.2);
+    box-shadow: 0 4px 15px rgba(255, 153, 51, 0.25);
 }
 
 .founder-img {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     object-fit: cover;
     flex-shrink: 0;
@@ -269,12 +279,12 @@ body.light-theme .founder-name {
 .founder-role {
     font-size: 11px;
     color: var(--text-secondary);
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 2px;
 }
 
 .founder-brand {
-    font-size: 10px;
+    font-size: 9px;
     color: var(--text-muted);
     font-style: italic;
     white-space: nowrap;
@@ -286,14 +296,17 @@ body.light-theme .founder-name {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 8px;
-    border-radius: 8px;
+    padding: 10px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background 0.2s;
+    background: var(--bg-hover);
+    border: 1px solid var(--border);
 }
 
 .user-info:hover {
-    background: var(--bg-hover);
+    background: var(--bg-card);
+    border-color: var(--accent);
 }
 
 .avatar {
@@ -317,33 +330,36 @@ body.light-theme .founder-name {
 
 .user-name {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .user-plan {
-    font-size: 12px;
-    color: var(--text-muted);
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 500;
 }
 
+/* ===== MAIN AREA ===== */
 .main {
     flex: 1;
     display: flex;
     flex-direction: column;
     height: 100vh;
     position: relative;
-    overflow-x: hidden;
+    overflow: hidden;
     min-width: 0;
 }
 
+/* ===== TOPBAR ===== */
 .topbar {
     height: 56px;
-    padding: 0 20px;
+    padding: 0 16px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
     border-bottom: 1px solid var(--border);
     background: var(--bg-main);
     flex-shrink: 0;
@@ -386,7 +402,9 @@ body.light-theme .founder-name {
 .theme-btn,
 .normal-btn,
 .study-btn,
-.kisan-btn {
+.kisan-btn,
+.insta-btn,
+.logout-btn-top {
     width: 36px;
     height: 36px;
     border-radius: 8px;
@@ -399,12 +417,14 @@ body.light-theme .founder-name {
     cursor: pointer;
     transition: all 0.2s;
     flex-shrink: 0;
+    text-decoration: none;
 }
 
 .theme-btn:hover,
 .normal-btn:hover,
 .study-btn:hover,
-.kisan-btn:hover {
+.kisan-btn:hover,
+.logout-btn-top:hover {
     background: var(--bg-hover);
     color: var(--text-primary);
 }
@@ -424,40 +444,10 @@ body.light-theme .founder-name {
     color: white;
 }
 
-.insta-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    background: transparent;
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-decoration: none;
-    flex-shrink: 0;
-}
-
 .insta-btn:hover {
     background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
     color: white;
     transform: scale(1.05);
-}
-
-.logout-btn-top {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    background: transparent;
-    color: var(--text-secondary);
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    flex-shrink: 0;
 }
 
 .logout-btn-top:hover {
@@ -466,44 +456,25 @@ body.light-theme .founder-name {
     transform: scale(1.05);
 }
 
-.gen-image-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: transparent;
-    color: var(--text-secondary);
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    flex-shrink: 0;
-    margin-right: 4px;
-}
-
-.gen-image-btn:hover {
-    background: var(--bg-hover);
-    color: var(--text-primary);
-}
-
+/* ===== CHAT AREA ===== */
 .chat-area {
     flex: 1;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 20px 0;
     scroll-behavior: smooth;
+    min-height: 0;
 }
 
 .welcome {
     max-width: 720px;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 40px 20px;
     text-align: center;
 }
 
 .welcome-logo {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .welcome-logo img {
@@ -533,7 +504,7 @@ body.light-theme .welcome h1 {
 .welcome p {
     color: var(--text-secondary);
     font-size: 15px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .suggestions {
@@ -577,12 +548,13 @@ body.light-theme .welcome h1 {
     color: var(--text-muted);
 }
 
+/* ===== MESSAGES ===== */
 .message-row {
     max-width: 720px;
     margin: 0 auto;
-    padding: 16px 20px;
+    padding: 14px 20px;
     display: flex;
-    gap: 16px;
+    gap: 14px;
     animation: fadeIn 0.3s ease;
 }
 
@@ -690,10 +662,12 @@ body.light-theme .user-row .message-avatar {
     opacity: 1;
 }
 
+/* ===== INPUT AREA ===== */
 .input-wrapper {
-    padding: 16px 20px 20px;
+    padding: 12px 20px 16px;
     background: var(--bg-main);
     flex-shrink: 0;
+    border-top: 1px solid var(--border);
 }
 
 .input-box {
@@ -704,13 +678,14 @@ body.light-theme .user-row .message-avatar {
     background: var(--bg-input);
     border: 1px solid var(--border);
     border-radius: 24px;
-    padding: 8px 8px 8px 18px;
+    padding: 6px 6px 6px 16px;
     transition: border 0.2s;
     gap: 2px;
 }
 
 .input-box:focus-within {
-    border-color: #444;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(255, 153, 51, 0.1);
 }
 
 .input-box textarea {
@@ -722,8 +697,8 @@ body.light-theme .user-row .message-avatar {
     font-size: 15px;
     font-family: inherit;
     resize: none;
-    max-height: 200px;
-    padding: 8px 0;
+    max-height: 150px;
+    padding: 9px 0;
     line-height: 1.5;
     min-width: 0;
 }
@@ -750,6 +725,7 @@ body.light-theme .user-row .message-avatar {
 .send-btn:hover:not(:disabled) {
     background: var(--accent);
     color: white;
+    transform: scale(1.05);
 }
 
 .send-btn:disabled {
@@ -764,7 +740,9 @@ body.light-theme .send-btn:disabled {
 }
 
 .mic-btn,
-.image-btn {
+.image-btn,
+.voice-btn,
+.gen-image-btn {
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -777,11 +755,13 @@ body.light-theme .send-btn:disabled {
     cursor: pointer;
     transition: all 0.2s;
     flex-shrink: 0;
-    margin-right: 4px;
+    margin-right: 2px;
 }
 
 .mic-btn:hover,
-.image-btn:hover {
+.image-btn:hover,
+.voice-btn:hover,
+.gen-image-btn:hover {
     background: var(--bg-hover);
     color: var(--text-primary);
 }
@@ -796,6 +776,11 @@ body.light-theme .send-btn:disabled {
     0% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.7); }
     70% { box-shadow: 0 0 0 10px rgba(255, 68, 68, 0); }
     100% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0); }
+}
+
+.voice-btn.active {
+    background: linear-gradient(135deg, #ff9933, #138808);
+    color: white;
 }
 
 .image-preview {
@@ -887,35 +872,9 @@ body.light-theme .send-btn:disabled {
     border-color: #4caf50;
 }
 
-.voice-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: transparent;
-    color: var(--text-secondary);
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    flex-shrink: 0;
-    margin-right: 4px;
-}
-
-.voice-btn:hover {
-    background: var(--bg-hover);
-    color: var(--text-primary);
-}
-
-.voice-btn.active {
-    background: linear-gradient(135deg, #ff9933, #138808);
-    color: white;
-}
-
 .input-footer {
     max-width: 720px;
-    margin: 8px auto 0;
+    margin: 6px auto 0;
     text-align: center;
     font-size: 11px;
     color: var(--text-muted);
@@ -944,7 +903,7 @@ body.light-theme .send-btn:disabled {
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -1230,6 +1189,8 @@ body.light-theme ::-webkit-scrollbar-thumb {
     .topbar-title {
         font-size: 14px;
         gap: 6px;
+        flex: 0 0 auto;
+        min-width: auto;
     }
 
     .topbar-title span {
@@ -1237,8 +1198,8 @@ body.light-theme ::-webkit-scrollbar-thumb {
     }
 
     .logo-img {
-        width: 24px;
-        height: 24px;
+        width: 26px;
+        height: 26px;
     }
 
     .normal-btn,
@@ -1262,7 +1223,7 @@ body.light-theme ::-webkit-scrollbar-thumb {
     }
 
     .chat-area {
-        padding: 10px 0;
+        padding: 12px 0;
     }
 
     .welcome {
@@ -1293,7 +1254,7 @@ body.light-theme ::-webkit-scrollbar-thumb {
     }
 
     .message-row {
-        padding: 10px 12px;
+        padding: 10px 14px;
         gap: 10px;
     }
 
@@ -1318,7 +1279,7 @@ body.light-theme ::-webkit-scrollbar-thumb {
     }
 
     .input-wrapper {
-        padding: 8px 10px 12px;
+        padding: 8px 12px 12px;
     }
 
     .input-box {
@@ -1370,6 +1331,31 @@ body.light-theme ::-webkit-scrollbar-thumb {
         display: flex;
     }
 
+    .founder-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .founder-name {
+        font-size: 13px;
+    }
+
+    .founder-role {
+        font-size: 10px;
+    }
+
+    .founder-brand {
+        font-size: 9px;
+    }
+
+    .founder-card {
+        padding: 9px;
+    }
+
+    .user-info {
+        padding: 8px;
+    }
+
     .modal-header {
         padding: 20px 16px 14px;
     }
@@ -1390,29 +1376,12 @@ body.light-theme ::-webkit-scrollbar-thumb {
     .plan-price {
         font-size: 26px;
     }
-
-    .founder-img {
-        width: 40px;
-        height: 40px;
-    }
-
-    .founder-name {
-        font-size: 13px;
-    }
-
-    .founder-role {
-        font-size: 10px;
-    }
-
-    .founder-brand {
-        font-size: 9px;
-    }
 }
 
 @media (max-width: 400px) {
     .logo-img {
-        width: 22px;
-        height: 22px;
+        width: 24px;
+        height: 24px;
     }
 
     .normal-btn,

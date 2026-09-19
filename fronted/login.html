@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Login — Bharat AI</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ff9933">
+    <link rel="icon" type="image/png" href="bharatailogo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html, body {
@@ -22,84 +25,103 @@
         }
 
         body {
-            background: linear-gradient(180deg, 
-                #ff9933 0%, 
-                #ffb366 12%, 
-                #1a1a1a 35%, 
-                #0a0a0a 50%, 
-                #1a1a1a 65%, 
-                #ffb366 88%, 
-                #ff9933 100%);
-            background-attachment: fixed;
+            background: #0a0a0a;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
             position: relative;
+            overflow-x: hidden;
         }
 
-        body::before {
-            content: '';
+        /* Animated gradient blobs */
+        .bg-blob {
             position: fixed;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 153, 51, 0.15), transparent 70%);
-            top: -200px;
-            left: -200px;
-            animation: float 8s ease-in-out infinite;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
             pointer-events: none;
+            z-index: 0;
         }
 
-        body::after {
-            content: '';
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(19, 136, 8, 0.15), transparent 70%);
-            bottom: -200px;
-            right: -200px;
-            animation: float 10s ease-in-out infinite reverse;
-            pointer-events: none;
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #ff9933, transparent 70%);
+            top: -100px;
+            left: -100px;
+            animation: float1 10s ease-in-out infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(50px, 50px); }
+        .blob-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #138808, transparent 70%);
+            bottom: -100px;
+            right: -100px;
+            animation: float2 12s ease-in-out infinite;
         }
 
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(80px, 80px) scale(1.1); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-80px, -80px) scale(1.1); }
+        }
+
+        /* Login Card */
         .login-container {
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 440px;
-            background: rgba(20, 20, 20, 0.85);
+            max-width: 420px;
+            background: linear-gradient(145deg, rgba(28, 28, 28, 0.95), rgba(18, 18, 18, 0.95));
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 153, 51, 0.15);
-            border-radius: 24px;
-            padding: 48px 40px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 153, 51, 0.2);
+            border-radius: 28px;
+            padding: 44px 36px;
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+                0 0 60px rgba(255, 153, 51, 0.08);
+            animation: cardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Logo */
         .login-logo-wrap {
             display: flex;
             justify-content: center;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
             position: relative;
         }
 
         .login-logo-wrap::before {
             content: '';
             position: absolute;
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             background: linear-gradient(135deg, #ff9933, #138808);
             border-radius: 50%;
-            filter: blur(30px);
+            filter: blur(40px);
             opacity: 0.5;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.15); }
         }
 
         .login-logo {
@@ -108,15 +130,17 @@
             border-radius: 24px;
             object-fit: cover;
             position: relative;
-            box-shadow: 0 8px 32px rgba(255, 153, 51, 0.3);
+            box-shadow: 0 8px 32px rgba(255, 153, 51, 0.4);
+            border: 2px solid rgba(255, 153, 51, 0.3);
         }
 
+        /* Heading */
         .login-title {
             text-align: center;
-            font-size: 26px;
+            font-size: 27px;
             font-weight: 800;
             margin-bottom: 8px;
-            background: linear-gradient(135deg, #ff9933, #ffffff, #138808);
+            background: linear-gradient(135deg, #ff9933 0%, #ffffff 50%, #138808 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -127,18 +151,25 @@
             text-align: center;
             color: #888;
             font-size: 14px;
-            margin-bottom: 36px;
+            margin-bottom: 32px;
             line-height: 1.5;
         }
 
+        /* Message Box */
         .msg-box {
             padding: 12px 16px;
             border-radius: 12px;
             font-size: 13px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             display: none;
             font-weight: 500;
             text-align: center;
+            animation: msgIn 0.3s ease;
+        }
+
+        @keyframes msgIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .msg-box.error {
@@ -155,6 +186,7 @@
             display: block;
         }
 
+        /* Inputs */
         .input-group {
             margin-bottom: 16px;
             position: relative;
@@ -165,23 +197,24 @@
             left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: #555;
+            color: #666;
             pointer-events: none;
             display: flex;
             align-items: center;
+            transition: color 0.2s;
         }
 
         .login-input {
             width: 100%;
-            padding: 15px 18px 15px 48px;
+            padding: 16px 18px 16px 50px;
             background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
+            border: 1.5px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
             color: #ffffff;
             font-size: 15px;
             outline: none;
             font-family: inherit;
-            transition: all 0.2s;
+            transition: all 0.25s;
         }
 
         .login-input::placeholder {
@@ -190,32 +223,51 @@
 
         .login-input:focus {
             border-color: #ff9933;
-            background: rgba(255, 153, 51, 0.05);
-            box-shadow: 0 0 0 4px rgba(255, 153, 51, 0.1);
+            background: rgba(255, 153, 51, 0.06);
+            box-shadow: 0 0 0 4px rgba(255, 153, 51, 0.12);
         }
 
+        .login-input:focus + .input-icon,
+        .input-group:focus-within .input-icon {
+            color: #ff9933;
+        }
+
+        /* Primary Button */
         .primary-btn {
             width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #ff9933, #138808);
+            padding: 16px;
+            background: linear-gradient(135deg, #ff9933 0%, #ff7b00 50%, #138808 100%);
+            background-size: 200% 200%;
             color: #ffffff;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             font-size: 15px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s;
             font-family: inherit;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            box-shadow: 0 8px 24px rgba(255, 153, 51, 0.25);
+            box-shadow: 0 10px 30px rgba(255, 153, 51, 0.35);
+            letter-spacing: 0.3px;
+            margin-top: 8px;
+            animation: btnShine 3s ease infinite;
+        }
+
+        @keyframes btnShine {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .primary-btn:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(255, 153, 51, 0.35);
+            box-shadow: 0 15px 40px rgba(255, 153, 51, 0.5);
+        }
+
+        .primary-btn:active:not(:disabled) {
+            transform: translateY(0);
         }
 
         .primary-btn:disabled {
@@ -223,12 +275,30 @@
             cursor: not-allowed;
         }
 
+        /* OTP Section */
         .otp-section {
             display: none;
         }
 
         .otp-section.active {
             display: block;
+            animation: msgIn 0.3s ease;
+        }
+
+        .otp-hint {
+            text-align: center;
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .otp-hint strong {
+            color: #ff9933;
+            word-break: break-all;
+            display: block;
+            margin-top: 4px;
+            font-size: 14px;
         }
 
         .back-btn {
@@ -236,8 +306,8 @@
             padding: 14px;
             background: transparent;
             color: #888;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
+            border: 1.5px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
@@ -249,26 +319,15 @@
         .back-btn:hover {
             background: rgba(255, 255, 255, 0.04);
             color: #ffffff;
+            border-color: rgba(255, 153, 51, 0.3);
         }
 
-        .otp-hint {
-            text-align: center;
-            color: #666;
-            font-size: 13px;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .otp-hint strong {
-            color: #ff9933;
-            word-break: break-all;
-        }
-
+        /* Skip Link */
         .skip-link {
             display: block;
             text-align: center;
-            margin-top: 28px;
-            color: #555;
+            margin-top: 24px;
+            color: #666;
             font-size: 13px;
             text-decoration: none;
             font-weight: 500;
@@ -279,12 +338,15 @@
             color: #ff9933;
         }
 
+        /* Footer */
         .footer-text {
             text-align: center;
             margin-top: 24px;
-            color: #444;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #555;
             font-size: 11px;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         .footer-text strong {
@@ -292,30 +354,28 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-size: 12px;
         }
 
-        /* ===== MOBILE FIX ===== */
+        /* Mobile */
         @media (max-width: 480px) {
             body {
                 padding: 12px;
                 align-items: flex-start;
-                padding-top: 20px;
-                padding-bottom: 30px;
+                padding-top: 24px;
+                padding-bottom: 24px;
             }
 
             .login-container {
-                padding: 30px 20px;
-                border-radius: 20px;
+                padding: 32px 22px;
+                border-radius: 24px;
                 max-width: 100%;
-            }
-
-            .login-logo-wrap {
-                margin-bottom: 20px;
             }
 
             .login-logo {
                 width: 72px;
                 height: 72px;
+                border-radius: 20px;
             }
 
             .login-title {
@@ -329,30 +389,35 @@
 
             .login-input {
                 font-size: 14px;
-                padding: 14px 16px 14px 44px;
+                padding: 15px 16px 15px 46px;
             }
 
             .input-icon {
-                left: 14px;
+                left: 15px;
             }
 
             .primary-btn {
                 font-size: 14px;
-                padding: 14px;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .login-title {
+                font-size: 20px;
             }
 
-            .back-btn {
-                font-size: 13px;
-                padding: 13px;
-            }
-
-            .footer-text {
-                font-size: 10px;
+            .login-logo {
+                width: 64px;
+                height: 64px;
             }
         }
     </style>
 </head>
 <body>
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+
     <div class="login-container">
         <div class="login-logo-wrap">
             <img src="bharatailogo.png" alt="Bharat AI" class="login-logo">
