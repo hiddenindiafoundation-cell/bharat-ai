@@ -33,7 +33,8 @@ const planModal = document.getElementById('planModal');
 const closePlanModal = document.getElementById('closePlanModal');
 const userInfo = document.getElementById('userInfo');
 
-const API_URL = 'http://localhost:3000/chat';
+// ===== RENDER BACKEND URL =====
+const API_URL = 'https://bharat-ai-trwz.onrender.com/chat';
 
 let isFirstMessage = true;
 let currentChatId = null;

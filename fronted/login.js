@@ -1,4 +1,5 @@
-const API_URL = 'http://localhost:3000';
+// ===== RENDER BACKEND URL =====
+const API_URL = 'https://bharat-ai-trwz.onrender.com';
 
 const sendOtpBtn = document.getElementById('sendOtpBtn');
 const verifyOtpBtn = document.getElementById('verifyOtpBtn');
