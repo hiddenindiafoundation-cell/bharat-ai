@@ -32,6 +32,9 @@ const planModal = document.getElementById('planModal');
 const closePlanModal = document.getElementById('closePlanModal');
 const userInfo = document.getElementById('userInfo');
 
+// Back button sidebar
+const backBtnSidebar = document.getElementById('backBtnSidebar');
+
 // ===== RENDER BACKEND URL =====
 const API_URL = 'https://bharat-ai-trwz.onrender.com/chat';
 
@@ -43,6 +46,22 @@ let pendingFile = null;
 let voiceEnabled = false;
 let studyMode = false;
 let kisanMode = false;
+
+// ===== DAILY LIMIT (Dynamic - Plan ke hisaab se) =====
+function getDailyLimit() {
+    const userData = localStorage.getItem('bharatai_user');
+    if (!userData) return 5; // Guest
+
+    try {
+        const user = JSON.parse(userData);
+        const plan = localStorage.getItem('bharatai_plan_' + user.email);
+
+        if (plan === 'pro') return 50; // Pro user
+        return 5; // Free user
+    } catch (e) {
+        return 5;
+    }
+}
 
 // ===== USER LOGIN CHECK (Guest Mode Allowed) =====
 function loadUserInfo() {
@@ -84,9 +103,14 @@ if (logoutBtn) {
     });
 }
 
-// ===== FREE PLAN LIMIT (5 messages/din) =====
-const FREE_LIMIT = 5;
+// ===== BACK BUTTON SIDEBAR =====
+if (backBtnSidebar) {
+    backBtnSidebar.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+    });
+}
 
+// ===== FREE PLAN LIMIT =====
 function getTodayKey() {
     const d = new Date();
     return `bharatai_count_${d.getFullYear()}_${d.getMonth()}_${d.getDate()}`;
@@ -104,16 +128,17 @@ function incrementMsgCount() {
 }
 
 function isLimitReached() {
-    return getMsgCount() >= FREE_LIMIT;
+    return getMsgCount() >= getDailyLimit();
 }
 
 function updateLimitUI() {
+    const dailyLimit = getDailyLimit();
     const count = getMsgCount();
-    const remaining = Math.max(0, FREE_LIMIT - count);
+    const remaining = Math.max(0, dailyLimit - count);
     const planEl = document.getElementById('userPlan');
 
-    if (isLimitReached()) {
-        planEl.textContent = `❌ Limit khatam (${count}/${FREE_LIMIT}) — Pro lo`;
+    if (count >= dailyLimit) {
+        planEl.textContent = `❌ Limit khatam (${count}/${dailyLimit}) — Pro lo ₹31`;
         planEl.style.color = '#ff4444';
         userInput.disabled = true;
         userInput.placeholder = 'Aaj ki limit khatam. Pro plan kharido →';
@@ -258,15 +283,27 @@ if (proBtn) {
 const upgradeBtn = document.getElementById('upgradeBtn');
 const yearlyBtn = document.getElementById('yearlyBtn');
 
+// ===== UPI PAYMENT =====
+function startPayment() {
+    const userData = localStorage.getItem('bharatai_user');
+
+    if (!userData) {
+        alert('❌ Pehle Gmail se login karo!\n\nLogin ke bina payment nahi kar sakte.');
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Payment page pe bhejo
+    window.location.href = 'payment-success.html';
+}
+
 if (upgradeBtn) {
-    upgradeBtn.addEventListener('click', () => {
-        alert('💎 Pro Plan selected!\n\n₹99/month — unlimited messages');
-    });
+    upgradeBtn.addEventListener('click', startPayment);
 }
 
 if (yearlyBtn) {
     yearlyBtn.addEventListener('click', () => {
-        alert('🎉 Yearly Plan selected!\n\n₹899/saal — 24% bachat');
+        alert('🎉 Yearly Plan — ₹299/saal\n\nFilhal ₹31 monthly use karo.');
     });
 }
 
@@ -693,7 +730,7 @@ async function sendMessage() {
     const message = userInput.value.trim();
 
     if (isLimitReached()) {
-        alert('❌ Aaj ki free limit khatam ho gayi!\n\nAb Pro plan kharido — ₹99/month ya ₹899/saal.\n\nUnlimited messages ke liye upgrade karo.');
+        alert('❌ Aaj ki free limit khatam ho gayi!\n\nAb Pro plan kharido — ₹31/month.\n\n50 messages/din ke liye upgrade karo.');
         planModal.classList.add('active');
         return;
     }
@@ -823,4 +860,4 @@ if (SpeechRecognition) {
 // ===== INIT =====
 loadUserInfo();
 renderChatList();
-updateLimitUI(); 
+updateLimitUI();

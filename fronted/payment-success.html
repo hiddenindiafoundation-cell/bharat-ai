@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay ₹31 — Bharat AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .payment-card {
+            background: linear-gradient(145deg, rgba(28, 28, 28, 0.95), rgba(18, 18, 18, 0.95));
+            border: 1px solid rgba(255, 153, 51, 0.3);
+            border-radius: 28px;
+            padding: 36px 28px;
+            max-width: 440px;
+            width: 100%;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .header-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff9933, #138808);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 32px;
+            box-shadow: 0 0 40px rgba(255, 153, 51, 0.5);
+        }
+
+        .header h1 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #ff9933, #ffffff, #138808);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* Bill */
+        .bill-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .bill-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .bill-row:last-child {
+            border-bottom: none;
+        }
+
+        .bill-label {
+            color: #888;
+            font-size: 13px;
+        }
+
+        .bill-value {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .bill-total {
+            background: linear-gradient(135deg, rgba(255, 153, 51, 0.15), rgba(19, 136, 8, 0.15));
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bill-total-label {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .bill-total-value {
+            background: linear-gradient(135deg, #ff9933, #138808);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        /* UPI Section */
+        .upi-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 153, 51, 0.3);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .upi-title {
+            color: #ff9933;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .upi-id-box {
+            background: #0a0a0a;
+            border: 2px dashed #ff9933;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .upi-id {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 700;
+            word-break: break-all;
+            flex: 1;
+            text-align: left;
+        }
+
+        .copy-upi-btn {
+            background: linear-gradient(135deg, #ff9933, #138808);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .copy-upi-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .copy-upi-btn.copied {
+            background: #4caf50;
+        }
+
+        .pay-now-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #4caf50, #138808);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.4);
+            margin-top: 8px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .pay-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(76, 175, 80, 0.6);
+        }
+
+        .pay-note {
+            color: #888;
+            font-size: 11px;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        .pay-note strong {
+            color: #ff9933;
+        }
+
+        /* Steps */
+        .steps-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .steps-title {
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .step {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            padding: 6px 0;
+        }
+
+        .step-num {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff9933, #138808);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            color: #ccc;
+            font-size: 12px;
+            line-height: 1.5;
+            padding-top: 3px;
+        }
+
+        /* Buttons */
+        .paid-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #ff9933, #ff7b00);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 153, 51, 0.4);
+            margin-bottom: 12px;
+        }
+
+        .paid-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255, 153, 51, 0.6);
+        }
+
+        .whatsapp-btn {
+            width: 100%;
+            padding: 14px;
+            background: #25D366;
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1da851;
+        }
+
+        .footer-text {
+            color: #555;
+            font-size: 11px;
+            margin-top: 16px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .footer-text strong {
+            background: linear-gradient(135deg, #ff9933, #138808);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-card">
+        <div class="header">
+            <div class="header-icon">💳</div>
+            <h1>Pay ₹31 Now</h1>
+            <p>Pro plan activate karo — 50 msg/din</p>
+        </div>
+
+        <!-- Bill -->
+        <div class="bill-box">
+            <div class="bill-row">
+                <span class="bill-label">Plan</span>
+                <span class="bill-value">Pro Plan</span>
+            </div>
+            <div class="bill-row">
+                <span class="bill-label">Duration</span>
+                <span class="bill-value">1 Month</span>
+            </div>
+            <div class="bill-row">
+                <span class="bill-label">Daily Messages</span>
+                <span class="bill-value">50/day</span>
+            </div>
+            <div class="bill-total">
+                <span class="bill-total-label">Total</span>
+                <span class="bill-total-value">₹31</span>
+            </div>
+        </div>
+
+        <!-- Pay Now -->
+        <div class="upi-section">
+            <div class="upi-title">💰 UPI Se Payment Karo</div>
+
+            <a class="pay-now-btn" id="payNowBtn" href="#">
+                📱 Pay ₹31 Now
+            </a>
+
+            <div class="pay-note" id="payNote">
+                Mobile pe click karo — UPI app khulega aur <strong>₹31 automatic</strong> aa jayega
+            </div>
+
+            <div class="upi-id-box" style="margin-top: 16px;">
+                <span class="upi-id" id="upiId">mrnooralam3214@okaxis</span>
+                <button class="copy-upi-btn" id="copyUpiBtn">Copy</button>
+            </div>
+
+            <div class="pay-note">
+                Agar UPI app automatic nahi khuli — <strong>UPI ID manually daalo</strong>
+            </div>
+        </div>
+
+        <!-- Steps -->
+        <div class="steps-box">
+            <div class="steps-title">📋 Kaise Karna Hai</div>
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-text"><strong style="color:#ff9933;">Pay ₹31 Now</strong> button dabao</div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-text">UPI app khulegi (PhonePe, GPay, Paytm)</div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-text"><strong style="color:#ff9933;">₹31 automatic</strong> aayega — bas confirm karo</div>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-text">Screenshot bhejo WhatsApp pe — plan activate ho jayega</div>
+            </div>
+        </div>
+
+        <button class="paid-btn" id="paidBtn">
+            ✅ Maine ₹31 Bhej Diya
+        </button>
+
+        <a class="whatsapp-btn" id="whatsappBtn" href="#" target="_blank">
+            📸 WhatsApp Pe Screenshot Bhejo
+        </a>
+
+        <div class="footer-text">
+            <strong>Bharat AI</strong> — India's Own AI Platform<br>
+            Payment ke baad plan manually activate hoga
+        </div>
+    </div>
+
+    <script>
+        const UPI_ID = 'mrnooralam3214@okaxis';
+        const AMOUNT = 31;
+        const PAYEE_NAME = 'Bharat AI';
+
+        // UPI Link banao — isse UPI app khulega aur ₹31 automatic aayega
+        const upiLink = 'upi://pay?pa=' + UPI_ID + '&pn=' + encodeURIComponent(PAYEE_NAME) + '&am=' + AMOUNT + '&cu=INR&tn=' + encodeURIComponent('Bharat AI Pro Plan');
+
+        document.getElementById('payNowBtn').href = upiLink;
+
+        // Copy UPI ID
+        document.getElementById('copyUpiBtn').addEventListener('click', async function() {
+            try {
+                await navigator.clipboard.writeText(UPI_ID);
+                this.textContent = '✅ Copied';
+                this.classList.add('copied');
+                
+                setTimeout(() => {
+                    this.textContent = 'Copy';
+                    this.classList.remove('copied');
+                }, 2000);
+            } catch (e) {
+                alert('Copy nahi ho paya. Manually likho: ' + UPI_ID);
+            }
+        });
+
+        // User info
+        const userData = localStorage.getItem('bharatai_user');
+        let userEmail = '';
+        let userName = '';
+        
+        if (userData) {
+            try {
+                const user = JSON.parse(userData);
+                userEmail = user.email || '';
+                userName = user.name || '';
+            } catch (e) {}
+        }
+
+        // WhatsApp message
+        const waMessage = encodeURIComponent(
+            'Namaste! Maine Bharat AI Pro Plan ke liye ₹31 bhej diya hai.\n\n' +
+            'Name: ' + userName + '\n' +
+            'Email: ' + userEmail + '\n' +
+            'Amount: ₹31\n' +
+            'UPI: ' + UPI_ID + '\n\n' +
+            'Screenshot bhej raha hoon. Please mera plan activate kar do.'
+        );
+
+        // Apna WhatsApp number yahan daalo
+        document.getElementById('whatsappBtn').href = 'https://wa.me/919999999999?text=' + waMessage;
+
+        // "Maine bhej diya" button
+        document.getElementById('paidBtn').addEventListener('click', function() {
+            alert('✅ Payment note ho gaya!\n\nAb please WhatsApp pe screenshot bhejo — hum 2 minute me plan activate kar denge.');
+            
+            document.getElementById('whatsappBtn').style.animation = 'pulse 1s infinite';
+            document.getElementById('whatsappBtn').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    </script>
+</body>
+</html>

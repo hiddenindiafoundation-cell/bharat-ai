@@ -261,6 +261,44 @@ body.light-theme .founder-name {
     font-weight: 500;
 }
 
+/* ===== CHAT HISTORY HEADER WITH BACK BUTTON ===== */
+.sidebar-chats-header {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.back-btn-sidebar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    width: 100%;
+    justify-content: center;
+}
+
+.back-btn-sidebar:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+    border-color: var(--accent);
+}
+
+.back-btn-sidebar svg {
+    width: 14px;
+    height: 14px;
+}
+
 /* ===== CHAT HISTORY SCROLL ===== */
 .sidebar-chats {
     flex: 1;
@@ -361,7 +399,6 @@ body.light-theme .founder-name {
     background: var(--bg-hover);
 }
 
-/* Topbar title - margin-right auto pushes icons right */
 .topbar-title {
     display: flex;
     align-items: center;
@@ -437,7 +474,7 @@ body.light-theme .founder-name {
     transform: scale(1.05);
 }
 
-/* ===== CHAT AREA (padding kam kiya) ===== */
+/* ===== CHAT AREA ===== */
 .chat-area {
     flex: 1;
     overflow-y: auto;
@@ -643,7 +680,7 @@ body.light-theme .user-row .message-avatar {
     opacity: 1;
 }
 
-/* ===== INPUT AREA (padding kam kiya) ===== */
+/* ===== INPUT AREA ===== */
 .input-wrapper {
     padding: 8px 16px 10px;
     background: var(--bg-main);
@@ -1334,6 +1371,20 @@ body.light-theme ::-webkit-scrollbar-thumb {
 
     .user-info {
         padding: 8px;
+    }
+
+    .sidebar-chats-header {
+        padding: 6px 10px;
+    }
+
+    .back-btn-sidebar {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    .back-btn-sidebar svg {
+        width: 12px;
+        height: 12px;
     }
 
     .modal-header {
