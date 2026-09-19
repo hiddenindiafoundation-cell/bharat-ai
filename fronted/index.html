@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bharat AI 🇮🇳</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="bharatailogo.png" alt="Bharat AI">
+                    <span>Bharat AI</span>
+                </div>
+            </div>
+            <button class="new-chat-btn" id="newChatBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                New Chat
+            </button>
+            <button class="export-btn" id="exportBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Chat Export karo
+            </button>
+            <div class="sidebar-chats" id="sidebarChats"></div>
+            <div class="sidebar-footer">
+                <div class="founder-card" id="founderCard">
+                    <img src="devloperimage.png" alt="Noor Alam" class="founder-img">
+                    <div class="founder-info">
+                        <div class="founder-name">Noor Alam</div>
+                        <div class="founder-role">Founder & AI Engineer</div>
+                        <div class="founder-brand">Bharat AI — India's Own AI Platform</div>
+                    </div>
+                </div>
+                <div class="user-info" id="userInfo">
+                    <div class="avatar" id="userAvatar">B</div>
+                    <div class="user-details">
+                        <div class="user-name" id="userName">Bharat AI</div>
+                        <div class="user-plan" id="userPlan">Free Plan</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Area -->
+        <main class="main">
+            <header class="topbar">
+                <button class="menu-btn" id="menuBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                <div class="topbar-title">
+                    <img src="bharatailogo.png" alt="Bharat AI" class="logo-img">
+                    <span>Bharat AI</span>
+                </div>
+                <button class="normal-btn active" id="normalBtn" title="Normal Mode">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button class="study-btn" id="studyBtn" title="Study Mode">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button class="kisan-btn" id="kisanBtn" title="Kisan Mode">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M12 2c-3 3-3 6 0 9 3-3 3-6 0-9zM12 13c-3 3-3 6 0 9 3-3 3-6 0-9z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button class="theme-btn" id="themeBtn" title="Theme change karo">
+                    <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <a href="https://www.instagram.com/bharat___ai" target="_blank" class="insta-btn" title="Instagram pe follow karo">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+                    </svg>
+                </a>
+                <button class="logout-btn-top" id="logoutBtn" title="Logout">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </header>
+
+            <div class="chat-area" id="chatBox">
+                <div class="welcome">
+                    <div class="welcome-logo">
+                        <img src="bharatailogo.png" alt="Bharat AI">
+                    </div>
+                    <h1>नमस्ते, मैं भारत AI हूँ</h1>
+                    <p>आपका अपना देसी AI Assistant। मैं आपकी क्या मदद कर सकता हूँ</p>
+                    <div class="suggestions">
+                        <div class="suggestion-card" data-prompt="Bharat ki rajdhani kya hai?">
+                            <div class="suggestion-icon">🏛️</div>
+                            <div class="suggestion-text">
+                                <div class="suggestion-title">Bharat ke baare me</div>
+                                <div class="suggestion-sub">Rajdhani, itihaas, sanskriti</div>
+                            </div>
+                        </div>
+                        <div class="suggestion-card" data-prompt="Mujhe padhai me madad karo">
+                            <div class="suggestion-icon">📚</div>
+                            <div class="suggestion-text">
+                                <div class="suggestion-title">Padhai me madad</div>
+                                <div class="suggestion-sub">Homework, notes, exam prep</div>
+                            </div>
+                        </div>
+                        <div class="suggestion-card" data-prompt="Ek shayari sunao">
+                            <div class="suggestion-icon">✍️</div>
+                            <div class="suggestion-text">
+                                <div class="suggestion-title">Shayari likho</div>
+                                <div class="suggestion-sub">Hindi, Urdu, Hinglish</div>
+                            </div>
+                        </div>
+                        <div class="suggestion-card" data-prompt="Business idea do">
+                            <div class="suggestion-icon">💡</div>
+                            <div class="suggestion-text">
+                                <div class="suggestion-title">Business idea</div>
+                                <div class="suggestion-sub">Startup, side hustle</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-wrapper">
+                <div class="input-box">
+                    <input type="file" id="imageInput" accept="image/*" style="display:none">
+                    <input type="file" id="fileInput" accept=".pdf,.txt,.doc,.docx" style="display:none">
+                    <button id="imageBtn" class="image-btn" title="Photo bhejo">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="2"/>
+                            <path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button id="fileBtn" class="image-btn" title="File bhejo (PDF, TXT)">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div id="imagePreview" class="image-preview" style="display:none">
+                        <img id="previewImg" src="" alt="preview">
+                        <button id="removeImage" class="remove-img">✕</button>
+                    </div>
+                    <div id="filePreview" class="image-preview" style="display:none">
+                        <div class="file-chip">
+                            <span id="fileName">file.pdf</span>
+                            <button id="removeFile" class="remove-img">✕</button>
+                        </div>
+                    </div>
+                    <textarea id="userInput" placeholder="Bharat AI se kuch bhi poocho..." rows="1"></textarea>
+                    <button id="micBtn" class="mic-btn" title="Bol ke poocho">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button id="voiceBtn" class="voice-btn" title="Voice OFF — click to ON">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M11 5L6 9H2v6h4l5 4V5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button id="proBtn" class="gen-image-btn" title="Pro Plan kharido — ₹899/saal">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button id="sendBtn" class="send-btn" disabled>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="input-footer">
+                    Bharat AI galtiyan kar sakta hai. Zaroori jaankari verify karein.
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Plan Details Modal -->
+    <div class="modal-overlay" id="planModal">
+        <div class="modal">
+            <button class="modal-close" id="closePlanModal">✕</button>
+            <div class="modal-header">
+                <h2>💎 Bharat AI Plans</h2>
+                <p>Apne liye best plan chuno</p>
+            </div>
+            <div class="modal-body">
+                <div class="plan-card current">
+                    <div class="plan-badge">Current</div>
+                    <h3>Free Plan</h3>
+                    <div class="plan-price">₹0<span>/month</span></div>
+                    <ul class="plan-features">
+                        <li>✅ 5 messages/din</li>
+                        <li>✅ Voice input</li>
+                        <li>✅ Image upload</li>
+                        <li>✅ Chat history</li>
+                        <li>❌ Unlimited messages</li>
+                        <li>❌ Priority support</li>
+                    </ul>
+                    <button class="plan-btn disabled" disabled>Current Plan</button>
+                </div>
+                <div class="plan-card popular">
+                    <div class="plan-badge popular-badge">⭐ Popular</div>
+                    <h3>Pro Plan</h3>
+                    <div class="plan-price">₹99<span>/month</span></div>
+                    <ul class="plan-features">
+                        <li>✅ Unlimited messages</li>
+                        <li>✅ Voice input + output</li>
+                        <li>✅ Image upload</li>
+                        <li>✅ Chat history</li>
+                        <li>✅ Priority support</li>
+                        <li>✅ No ads</li>
+                    </ul>
+                    <button class="plan-btn" id="upgradeBtn">Upgrade to Pro</button>
+                </div>
+                <div class="plan-card yearly">
+                    <div class="plan-badge yearly-badge">🎉 Save 24%</div>
+                    <h3>Yearly Plan</h3>
+                    <div class="plan-price">₹899<span>/year</span></div>
+                    <div class="plan-save">₹75/month — ₹1188 se sirf ₹899</div>
+                    <ul class="plan-features">
+                        <li>✅ Sab kuch Pro me</li>
+                        <li>✅ Unlimited messages</li>
+                        <li>✅ Voice input + output</li>
+                        <li>✅ Image upload</li>
+                        <li>✅ Priority support</li>
+                        <li>✅ 24% bachat</li>
+                    </ul>
+                    <button class="plan-btn yearly-btn" id="yearlyBtn">Get Yearly Plan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
