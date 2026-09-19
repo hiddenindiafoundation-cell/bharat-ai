@@ -31,6 +31,12 @@ body.light-theme {
     --border: #e0e0e0;
 }
 
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+}
+
 body {
     background: var(--bg-main);
     color: var(--text-primary);
@@ -42,6 +48,7 @@ body {
 .app {
     display: flex;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 .sidebar {
@@ -51,6 +58,7 @@ body {
     flex-direction: column;
     border-right: 1px solid var(--border);
     transition: transform 0.3s ease, background 0.3s;
+    flex-shrink: 0;
 }
 
 .sidebar-header {
@@ -299,15 +307,20 @@ body.light-theme .founder-name {
     font-size: 14px;
     font-weight: 700;
     color: white;
+    flex-shrink: 0;
 }
 
 .user-details {
     flex: 1;
+    min-width: 0;
 }
 
 .user-name {
     font-size: 14px;
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .user-plan {
@@ -321,6 +334,8 @@ body.light-theme .founder-name {
     flex-direction: column;
     height: 100vh;
     position: relative;
+    overflow-x: hidden;
+    min-width: 0;
 }
 
 .topbar {
@@ -331,6 +346,7 @@ body.light-theme .founder-name {
     gap: 10px;
     border-bottom: 1px solid var(--border);
     background: var(--bg-main);
+    flex-shrink: 0;
 }
 
 .menu-btn {
@@ -342,6 +358,7 @@ body.light-theme .founder-name {
     padding: 6px;
     border-radius: 6px;
     transition: background 0.2s;
+    flex-shrink: 0;
 }
 
 .menu-btn:hover {
@@ -355,6 +372,7 @@ body.light-theme .founder-name {
     font-size: 15px;
     font-weight: 600;
     flex: 1;
+    min-width: 0;
 }
 
 .logo-img {
@@ -362,6 +380,7 @@ body.light-theme .founder-name {
     height: 26px;
     border-radius: 6px;
     object-fit: cover;
+    flex-shrink: 0;
 }
 
 .theme-btn,
@@ -379,6 +398,7 @@ body.light-theme .founder-name {
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s;
+    flex-shrink: 0;
 }
 
 .theme-btn:hover,
@@ -416,10 +436,32 @@ body.light-theme .founder-name {
     cursor: pointer;
     transition: all 0.2s;
     text-decoration: none;
+    flex-shrink: 0;
 }
 
 .insta-btn:hover {
     background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+    transform: scale(1.05);
+}
+
+.logout-btn-top {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-secondary);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.logout-btn-top:hover {
+    background: #ff4444;
     color: white;
     transform: scale(1.05);
 }
@@ -448,6 +490,7 @@ body.light-theme .founder-name {
 .chat-area {
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 20px 0;
     scroll-behavior: smooth;
 }
@@ -589,6 +632,8 @@ body.light-theme .user-row .message-avatar {
     padding-top: 4px;
     white-space: pre-wrap;
     word-wrap: break-word;
+    overflow-wrap: anywhere;
+    min-width: 0;
 }
 
 .message-image {
@@ -604,6 +649,7 @@ body.light-theme .user-row .message-avatar {
     gap: 6px;
     margin-top: 8px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .rating-btn {
@@ -619,6 +665,7 @@ body.light-theme .user-row .message-avatar {
     cursor: pointer;
     transition: all 0.2s;
     opacity: 0;
+    flex-shrink: 0;
 }
 
 .message-row:hover .rating-btn {
@@ -646,6 +693,7 @@ body.light-theme .user-row .message-avatar {
 .input-wrapper {
     padding: 16px 20px 20px;
     background: var(--bg-main);
+    flex-shrink: 0;
 }
 
 .input-box {
@@ -658,6 +706,7 @@ body.light-theme .user-row .message-avatar {
     border-radius: 24px;
     padding: 8px 8px 8px 18px;
     transition: border 0.2s;
+    gap: 2px;
 }
 
 .input-box:focus-within {
@@ -676,6 +725,7 @@ body.light-theme .user-row .message-avatar {
     max-height: 200px;
     padding: 8px 0;
     line-height: 1.5;
+    min-width: 0;
 }
 
 .input-box textarea::placeholder {
@@ -819,6 +869,7 @@ body.light-theme .send-btn:disabled {
     margin-top: 8px;
     transition: all 0.2s;
     opacity: 0;
+    flex-shrink: 0;
 }
 
 .message-row:hover .copy-btn {
@@ -1140,14 +1191,18 @@ body.light-theme ::-webkit-scrollbar-thumb {
     background: linear-gradient(135deg, #138808, #0d5c05);
 }
 
+/* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 768px) {
     .sidebar {
         position: fixed;
         left: 0;
         top: 0;
         height: 100vh;
-        z-index: 100;
+        width: 280px;
+        z-index: 1000;
         transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        box-shadow: 2px 0 20px rgba(0, 0, 0, 0.5);
     }
 
     .sidebar.open {
@@ -1155,19 +1210,106 @@ body.light-theme ::-webkit-scrollbar-thumb {
     }
 
     .menu-btn {
-        display: block;
+        display: flex;
+    }
+
+    .topbar {
+        height: 52px;
+        padding: 0 8px;
+        gap: 2px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .topbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .topbar-title {
+        font-size: 14px;
+        gap: 6px;
+    }
+
+    .topbar-title span {
+        display: none;
+    }
+
+    .logo-img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .normal-btn,
+    .study-btn,
+    .kisan-btn,
+    .theme-btn,
+    .insta-btn,
+    .logout-btn-top {
+        width: 34px;
+        height: 34px;
+    }
+
+    .normal-btn svg,
+    .study-btn svg,
+    .kisan-btn svg,
+    .theme-btn svg,
+    .insta-btn svg,
+    .logout-btn-top svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .chat-area {
+        padding: 10px 0;
+    }
+
+    .welcome {
+        padding: 30px 16px;
+    }
+
+    .welcome-logo img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .welcome h1 {
+        font-size: 20px;
+    }
+
+    .welcome p {
+        font-size: 13px;
+        margin-bottom: 24px;
     }
 
     .suggestions {
         grid-template-columns: 1fr;
+        gap: 10px;
     }
 
-    .welcome h1 {
-        font-size: 22px;
+    .suggestion-card {
+        padding: 12px;
     }
 
     .message-row {
-        padding: 12px 16px;
+        padding: 10px 12px;
+        gap: 10px;
+    }
+
+    .message-avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+
+    .message-content {
+        font-size: 14px;
+    }
+
+    .message-image {
+        max-width: 100%;
+        max-height: 250px;
     }
 
     .copy-btn,
@@ -1175,17 +1317,83 @@ body.light-theme ::-webkit-scrollbar-thumb {
         opacity: 1;
     }
 
+    .input-wrapper {
+        padding: 8px 10px 12px;
+    }
+
+    .input-box {
+        padding: 5px 5px 5px 12px;
+        border-radius: 20px;
+    }
+
+    .input-box textarea {
+        font-size: 14px;
+        padding: 7px 0;
+    }
+
+    .send-btn,
+    .mic-btn,
+    .image-btn,
+    .voice-btn,
+    .gen-image-btn {
+        width: 32px;
+        height: 32px;
+        margin-right: 2px;
+    }
+
+    .send-btn svg,
+    .mic-btn svg,
+    .image-btn svg,
+    .voice-btn svg,
+    .gen-image-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .image-preview img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .file-chip {
+        font-size: 11px;
+        padding: 6px 10px;
+        max-width: 120px;
+    }
+
+    .input-footer {
+        font-size: 10px;
+        margin-top: 6px;
+    }
+
+    .chat-delete-btn {
+        display: flex;
+    }
+
     .modal-header {
-        padding: 24px 20px 16px;
+        padding: 20px 16px 14px;
     }
 
     .modal-header h2 {
-        font-size: 20px;
+        font-size: 18px;
+    }
+
+    .modal-body {
+        padding: 14px;
+        gap: 12px;
+    }
+
+    .plan-card {
+        padding: 16px;
+    }
+
+    .plan-price {
+        font-size: 26px;
     }
 
     .founder-img {
-        width: 42px;
-        height: 42px;
+        width: 40px;
+        height: 40px;
     }
 
     .founder-name {
@@ -1199,29 +1407,43 @@ body.light-theme ::-webkit-scrollbar-thumb {
     .founder-brand {
         font-size: 9px;
     }
+}
 
-    .chat-delete-btn {
-        display: flex;
+@media (max-width: 400px) {
+    .logo-img {
+        width: 22px;
+        height: 22px;
     }
-}
-/* Logout Button (Topbar) */
-.logout-btn-top {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    background: transparent;
-    color: var(--text-secondary);
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    flex-shrink: 0;
-}
 
-.logout-btn-top:hover {
-    background: #ff4444;
-    color: white;
-    transform: scale(1.05);
+    .normal-btn,
+    .study-btn,
+    .kisan-btn,
+    .theme-btn,
+    .insta-btn,
+    .logout-btn-top {
+        width: 30px;
+        height: 30px;
+    }
+
+    .message-content {
+        font-size: 13px;
+    }
+
+    .welcome h1 {
+        font-size: 18px;
+    }
+
+    .welcome-logo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .send-btn,
+    .mic-btn,
+    .image-btn,
+    .voice-btn,
+    .gen-image-btn {
+        width: 30px;
+        height: 30px;
+    }
 }

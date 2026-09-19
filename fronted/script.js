@@ -45,12 +45,18 @@ let voiceEnabled = false;
 let studyMode = false;
 let kisanMode = false;
 
-// ===== USER LOGIN CHECK =====
+// ===== USER LOGIN CHECK (Guest Mode Allowed) =====
 function loadUserInfo() {
     const userData = localStorage.getItem('bharatai_user');
 
+    // Agar user login nahi hai, toh Guest mode me chalao
     if (!userData) {
-        window.location.href = 'login.html';
+        const nameEl = document.getElementById('userName');
+        const avatarEl = document.getElementById('userAvatar');
+
+        if (nameEl) nameEl.textContent = 'Guest User';
+        if (avatarEl) avatarEl.textContent = 'G';
+
         return;
     }
 
